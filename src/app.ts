@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import { SentimentAnalysisRouter } from "./routes";
 
 dotenv.config();
 
@@ -9,6 +10,8 @@ const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use("/sentiment-analysis", SentimentAnalysisRouter);
 
 app.use("/", (req: express.Request, res: express.Response) => {
   res.send("Hello World!");
