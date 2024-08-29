@@ -4,7 +4,7 @@
  *
  */
 
-import { openai } from "@ai-sdk/openai";
+import { openai, createOpenAI } from "@ai-sdk/openai";
 import { AnantaOptions } from "@avski/models";
 import { generateText, LanguageModel } from "ai";
 import { cleanGPTJson, parseJSON } from "./utils";
@@ -14,9 +14,16 @@ export class Ananta {
   private model: LanguageModel;
 
   constructor(options?: AnantaOptions) {
-    options = options || {};
+    options = options || { llmApiKey: "" };
     this.options = this.initOptions(options);
-    this.model = openai("gpt-4o-mini");
+
+    try {
+      const openai = createOpenAI({ apiKey: options.llmApiKey });
+      this.model = openai("gpt-4o-mini");
+    } catch (error) {
+      console.error("Ananta: failed to create OpenAI model", error);
+      throw new Error("Failed to create OpenAI model.");
+    }
   }
 
   /**
@@ -34,6 +41,7 @@ export class Ananta {
       includeRawProbability: options.includeRawProbability || false,
       ignoreStopwords: options.ignoreStopwords || false,
       customEntities: options.customEntities || [],
+      llmApiKey: options.llmApiKey,
     };
   }
 
@@ -52,7 +60,8 @@ export class Ananta {
         system: `You are Ananta, an AI-agent that performs sentiment analysis. 
                 I will give you a text and some configuration options.
                 Return the response based on the sentiment of the text in JSON format. 
-                Response Schema: { sentiment: string, score: number }`,
+                Response Schema: { sentiment: string, score: number }
+                `,
         prompt: `Text: "${text}"
                  Options: ${JSON.stringify(this.options)}`,
       });

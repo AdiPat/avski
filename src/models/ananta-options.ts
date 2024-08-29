@@ -8,6 +8,7 @@ interface AnantaOptions {
   includeRawProbability?: boolean;
   ignoreStopwords?: boolean;
   customEntities?: string[];
+  llmApiKey: string;
 }
 
 export type { AnantaOptions };

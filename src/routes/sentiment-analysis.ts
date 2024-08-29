@@ -7,6 +7,14 @@ const SentimentAnalysisRouter = express.Router();
 SentimentAnalysisRouter.post(
   "/",
   async (req: express.Request, res: express.Response) => {
+    const llmApiKey = req.headers["llm-api-key"];
+
+    if (!llmApiKey) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ error: "LLM API Key is required." });
+    }
+
     const body = req.body;
 
     const { text, options } = body;
@@ -21,7 +29,9 @@ SentimentAnalysisRouter.post(
 
     // TODO: validate options
 
-    const ananta = new Ananta();
+    const ananta = new Ananta({
+      llmApiKey: Array.isArray(llmApiKey) ? llmApiKey[0] : llmApiKey,
+    });
 
     const result = await ananta.analyze(trimmedText);
 
@@ -31,7 +41,7 @@ SentimentAnalysisRouter.post(
         .json({ error: result.error });
     }
 
-    return res.json(result);
+    return res.status(StatusCodes.OK).json(result);
   }
 );
 
