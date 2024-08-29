@@ -5,7 +5,6 @@ interface AnantaOptions {
   context?: string;
   includeEmotions?: boolean;
   includeReport?: boolean;
-  includeRawProbability?: boolean;
   ignoreStopwords?: boolean;
   customEntities?: string[];
   llmApiKey: string;

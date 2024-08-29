@@ -38,7 +38,6 @@ export class Ananta {
       context: options.context || "",
       includeEmotions: options.includeEmotions || false,
       includeReport: options.includeReport || false,
-      includeRawProbability: options.includeRawProbability || false,
       ignoreStopwords: options.ignoreStopwords || false,
       customEntities: options.customEntities || [],
       llmApiKey: options.llmApiKey,
@@ -66,9 +65,46 @@ export class Ananta {
                     ? "Include Report as field 'report' in the JSON. The type of 'report' is string. Write upto 3 paragraphs. "
                     : ""
                 }
+
+                ${
+                  this.options.includeEmotions
+                    ? "Include Emotions as field 'emotions' in the JSON. The type of 'emotions' is object. The object contains the emotions and their scores. "
+                    : ""
+                }
+
+                ${
+                  this.options.customEntities.length > 0
+                    ? `Custom Entities: ${this.options.customEntities.join(
+                        ","
+                      )}`
+                    : ""
+                }
+
+                ${this.options.ignoreStopwords ? "Ignore Stopwords." : ""}
+
+                ${
+                  this.options.context ? `Context: ${this.options.context}` : ""
+                }
+
+                ${
+                  this.options.language
+                    ? `Language: ${this.options.language}`
+                    : ""
+                }
+
+                ${
+                  this.options.sensitivity
+                    ? `Sensitivity: ${this.options.sensitivity}`
+                    : ""
+                }
+
+                ${
+                  this.options.threshold
+                    ? `Threshold: ${this.options.threshold}`
+                    : ""
+                }
                 `,
-        prompt: `Text: "${text}"
-                 Options: ${JSON.stringify(this.options)}`,
+        prompt: `Text: "${text}"`,
       });
 
       const responseClean = cleanGPTJson(response);
