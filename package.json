@@ -1,0 +1,51 @@
+{
+  "name": "avski",
+  "version": "1.0.0",
+  "description": "NLP As A Service",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "start:dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "test": "npx playwright test --reporter=null"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/AdiPat/unified-search.git"
+  },
+  "keywords": [
+    "tools",
+    "search",
+    "api"
+  ],
+  "author": "Aditya Patange",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AdiPat/google-search-api/issues"
+  },
+  "homepage": "https://github.com/AdiPat/google-search-api#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/express": "^4.17.21",
+    "@types/json-schema": "^7.0.15",
+    "@types/markdown-pdf": "^9.0.5",
+    "@types/node": "^20.14.15",
+    "@types/puppeteer": "^7.0.4",
+    "@types/react": "^18.3.3",
+    "nodemon": "^3.1.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^0.0.44",
+    "ai": "^3.3.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "fetch": "^1.1.0",
+    "markdown-pdf": "^11.0.0",
+    "mathjs": "^13.0.3",
+    "openai": "^4.55.4",
+    "puppeteer": "^22.10.0",
+    "react": "^18.3.1"
+  }
+}
