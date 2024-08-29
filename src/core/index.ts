@@ -4,3 +4,4 @@ dotenv.config();
 
 export { Constants } from "./constants";
 export { Ananta } from "./ananta";
+export { Sumo } from "./sumo";

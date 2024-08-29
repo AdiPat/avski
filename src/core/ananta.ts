@@ -52,7 +52,8 @@ export class Ananta {
    * @returns The sentiment of the text.
    */
   async analyze(
-    text: string
+    text: string,
+    options?: AnantaOptions
   ): Promise<{ sentiment?: string; score?: number; error?: string }> {
     try {
       const { text: response } = await generateText({
@@ -115,33 +116,6 @@ export class Ananta {
       console.error("analyze: failed to analyze text", error);
       return {
         error: "Failed to analyze text",
-      };
-    }
-  }
-
-  async summarize(
-    content: string
-  ): Promise<{ summary?: string; error?: string }> {
-    try {
-      const splitter = new RecursiveCharacterTextSplitter({
-        chunkSize: 1000,
-        chunkOverlap: 100,
-      });
-      const contentChunks = await splitter.createDocuments([content]);
-
-      const summaries = await Promise.all(
-        contentChunks.map((chunk) => summarize(chunk.pageContent))
-      );
-
-      console.log("Summaries", summaries);
-
-      const summary = summaries.join("\n");
-
-      return { summary };
-    } catch (error) {
-      console.error("summarize: failed to summarize content", error);
-      return {
-        error: "Failed to summarize content",
       };
     }
   }

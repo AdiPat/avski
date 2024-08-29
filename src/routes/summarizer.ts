@@ -1,4 +1,4 @@
-import { Ananta } from "../core";
+import { Sumo } from "../core/sumo";
 import express from "express";
 import { StatusCodes } from "http-status-codes";
 
@@ -34,12 +34,12 @@ SummarizerRouter.post(
 
     // TODO: validate options
 
-    const ananta = new Ananta({
+    const sumo = new Sumo({
       llmApiKey: Array.isArray(llmApiKey) ? llmApiKey[0] : llmApiKey,
       ...options,
     });
 
-    const result = await ananta.summarize(trimmedText);
+    const result = await sumo.summarize(trimmedText);
 
     if (result.error) {
       return res
