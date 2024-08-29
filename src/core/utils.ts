@@ -24,4 +24,17 @@ async function summarize(content: string) {
   }
 }
 
-export { cleanGPTJson, summarize };
+/**
+ * Silently parse JSON. Return null if parsing fails.
+ * @param json
+ * @returns The parsed JSON or null.
+ */
+function parseJSON(json: string): any {
+  try {
+    return JSON.parse(json);
+  } catch (error) {
+    return null;
+  }
+}
+
+export { cleanGPTJson, summarize, parseJSON };
