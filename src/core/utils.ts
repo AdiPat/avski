@@ -37,4 +37,20 @@ function parseJSON(json: string): any {
   }
 }
 
-export { cleanGPTJson, summarize, parseJSON };
+async function compressText(text: string, compression: number) {
+  try {
+    const { text: compressedText } = await generateText({
+      model: openai("gpt-4o"),
+      system:
+        "You are compressing a text. Write a compressed version of the text.",
+      prompt: `Text: "${text}"\nCompression: ${compression}`,
+    });
+
+    return compressedText;
+  } catch (error) {
+    console.error("compressText: failed to compress text", error);
+    return "";
+  }
+}
+
+export { cleanGPTJson, summarize, parseJSON, compressText };
