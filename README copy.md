@@ -1,2 +1,0 @@
-# voltron
-Voltron writes books! 📖
