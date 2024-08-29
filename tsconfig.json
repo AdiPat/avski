@@ -14,11 +14,11 @@
       "@avski/*": ["*"]
     },
     "jsx": "react",
-    "types": ["react"],
+    "types": ["react", "jest"],
     "typeRoots": ["node_modules/@types"],
     "skipLibCheck": true,
     "noEmitOnError": false
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts"],
   "exclude": ["node_modules"]
 }
