@@ -61,6 +61,11 @@ export class Ananta {
                 I will give you a text and some configuration options.
                 Return the response based on the sentiment of the text in JSON format. 
                 Response Schema: { sentiment: string, score: number }
+                ${
+                  this.options.includeReport
+                    ? "Include Report as field 'report' in the JSON. The type of 'report' is string. Write upto 3 paragraphs. "
+                    : ""
+                }
                 `,
         prompt: `Text: "${text}"
                  Options: ${JSON.stringify(this.options)}`,

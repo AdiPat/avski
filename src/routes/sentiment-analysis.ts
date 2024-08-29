@@ -17,7 +17,12 @@ SentimentAnalysisRouter.post(
 
     const body = req.body;
 
-    const { text, options } = body;
+    const { text } = body;
+
+    const options = body.options || {};
+
+    // we don't want users to pass the llm api key in the body
+    delete options.llmApiKey;
 
     if (!text) {
       return res
@@ -31,6 +36,7 @@ SentimentAnalysisRouter.post(
 
     const ananta = new Ananta({
       llmApiKey: Array.isArray(llmApiKey) ? llmApiKey[0] : llmApiKey,
+      ...options,
     });
 
     const result = await ananta.analyze(trimmedText);
