@@ -4,11 +4,10 @@
  *
  */
 
-import { openai, createOpenAI } from "@ai-sdk/openai";
+import { createOpenAI } from "@ai-sdk/openai";
 import { AnantaOptions } from "@avski/models";
 import { generateText, LanguageModel } from "ai";
 import { cleanGPTJson, parseJSON, summarize } from "../utils";
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
 export class Ananta {
   private options: AnantaOptions;
