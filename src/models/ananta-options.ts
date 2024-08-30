@@ -1,4 +1,6 @@
-interface AnantaOptions {
+import { AIAgentOptions } from "./ai-agent-options";
+
+interface AnantaOptions extends AIAgentOptions {
   sensitivity?: number;
   language?: string;
   threshold?: number;
@@ -7,7 +9,6 @@ interface AnantaOptions {
   includeReport?: boolean;
   ignoreStopwords?: boolean;
   customEntities?: string[];
-  llmApiKey: string;
 }
 
 export type { AnantaOptions };

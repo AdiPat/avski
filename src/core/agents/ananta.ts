@@ -8,22 +8,15 @@ import { createOpenAI } from "@ai-sdk/openai";
 import { AnantaOptions } from "@avski/models";
 import { generateText, LanguageModel } from "ai";
 import { cleanGPTJson, parseJSON, summarize } from "../utils";
+import { AIAgent } from "./ai-agent";
 
-export class Ananta {
+export class Ananta extends AIAgent {
   private options: AnantaOptions;
-  private model: LanguageModel;
 
   constructor(options?: AnantaOptions) {
+    super(options);
     options = options || { llmApiKey: "" };
     this.options = this.initOptions(options);
-
-    try {
-      const openai = createOpenAI({ apiKey: options.llmApiKey });
-      this.model = openai("gpt-4o-mini");
-    } catch (error) {
-      console.error("Ananta: failed to create OpenAI model", error);
-      throw new Error("Failed to create OpenAI model.");
-    }
   }
 
   /**
@@ -51,8 +44,7 @@ export class Ananta {
    * @returns The sentiment of the text.
    */
   async analyze(
-    text: string,
-    options?: AnantaOptions
+    text: string
   ): Promise<{ sentiment?: string; score?: number; error?: string }> {
     try {
       const { text: response } = await generateText({

@@ -7,12 +7,13 @@ import { createOpenAI } from "@ai-sdk/openai";
 import { SumoOptions } from "@avski/models";
 import { compressText, summarize } from "../utils";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { AIAgent } from "./ai-agent";
 
-export class Sumo {
+export class Sumo extends AIAgent {
   private options: SumoOptions;
 
   constructor(options?: SumoOptions) {
-    options = options || { llmApiKey: "" };
+    super(options);
     this.options = this.initOptions(options);
 
     try {
@@ -54,7 +55,8 @@ export class Sumo {
 
         for (const chunk of contentChunks) {
           const summary = await summarize(
-            `${runningSummary} \n ${chunk.pageContent}`
+            `${runningSummary} \n ${chunk.pageContent}`,
+            this.model
           );
           runningSummary += summary;
         }
