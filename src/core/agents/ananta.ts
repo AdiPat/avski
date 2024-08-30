@@ -4,10 +4,9 @@
  *
  */
 
-import { createOpenAI } from "@ai-sdk/openai";
 import { AnantaOptions } from "@avski/models";
-import { generateText, LanguageModel } from "ai";
-import { cleanGPTJson, parseJSON, summarize } from "../utils";
+import { generateText } from "ai";
+import { cleanGPTJson, parseJSON } from "../utils";
 import { AIAgent } from "./ai-agent";
 
 export class Ananta extends AIAgent {
