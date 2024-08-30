@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import { SentimentAnalysisRouter, SummarizerRouter } from "./routes";
+import { TranslatorRouter } from "./routes/translator";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/sentiment-analysis", SentimentAnalysisRouter);
 app.use("/summarizer", SummarizerRouter);
+app.use("/translator", TranslatorRouter);
 
 app.use("/", (req: express.Request, res: express.Response) => {
   res.send("Hello World!");
