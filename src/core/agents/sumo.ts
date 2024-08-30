@@ -38,6 +38,13 @@ export class Sumo extends AIAgent {
     };
   }
 
+  /**
+   * Summarize content.
+   *
+   * @param content The content to summarize.
+   * @returns The summary of the content or an error message if summarization fails.
+   *
+   */
   async summarize(
     content: string
   ): Promise<{ summary?: string; error?: string }> {
