@@ -1,5 +1,5 @@
 import { openai } from "@ai-sdk/openai";
-import { generateText } from "ai";
+import { generateText, LanguageModel } from "ai";
 
 function cleanGPTJson(json: string): string {
   if (!json || json.length === 0) {
@@ -9,10 +9,10 @@ function cleanGPTJson(json: string): string {
   return json.replace(/^```json\n|\n```$/g, "").replace(/\r?\n|\r/g, "");
 }
 
-async function summarize(content: string) {
+async function summarize(content: string, model?: LanguageModel) {
   try {
     const { text } = await generateText({
-      model: openai("gpt-4o"),
+      model: model ?? openai("gpt-4o-mini"),
       system: "You are summarizing a text. Write a summary of the text.",
       prompt: `Text: "${content}"`,
     });
