@@ -1,4 +1,4 @@
-import { Sumo } from "../core/sumo";
+import { Sumo } from "../core/agents";
 import express from "express";
 import { StatusCodes } from "http-status-codes";
 

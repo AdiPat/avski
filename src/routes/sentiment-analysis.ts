@@ -1,4 +1,4 @@
-import { Ananta } from "../core";
+import { Ananta } from "../core/agents";
 import express from "express";
 import { StatusCodes } from "http-status-codes";
 

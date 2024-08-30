@@ -5,7 +5,7 @@
  */
 import { createOpenAI } from "@ai-sdk/openai";
 import { SumoOptions } from "@avski/models";
-import { compressText, summarize } from "./utils";
+import { compressText, summarize } from "../utils";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
 export class Sumo {
