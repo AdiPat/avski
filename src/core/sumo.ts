@@ -33,7 +33,7 @@ export class Sumo {
     return {
       rollingSummary: options.rollingSummary || false,
       llmApiKey: options.llmApiKey,
-      compression: options.compression || 0.5,
+      compression: options.compression || false,
     };
   }
 
@@ -69,10 +69,7 @@ export class Sumo {
       }
 
       if (this.options.compression) {
-        const compressedSummary = await compressText(
-          summary,
-          this.options.compression
-        );
+        const compressedSummary = await compressText(summary, 0.5);
 
         if (compressedSummary) {
           summary = compressedSummary;

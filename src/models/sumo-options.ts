@@ -1,7 +1,7 @@
 interface SumoOptions {
   rollingSummary?: boolean;
   llmApiKey: string;
-  compression?: number;
+  compression?: boolean;
 }
 
 export type { SumoOptions };
